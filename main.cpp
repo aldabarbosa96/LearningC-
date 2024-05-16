@@ -11,9 +11,10 @@ int suma(){
     return num;
 }
 
+
 int main() {
     std::cout << "Prueba básica de output por terminal" << std::endl; //el endl equivale a hacer \n en java
-    std::cout << "Resultado de la suma: " << suma() << std::endl;
+    std::cout << "Resultado del bucle anidado: " << suma() << std::endl;
     return 0;
 }
 
