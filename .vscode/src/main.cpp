@@ -1,39 +1,58 @@
+/*Esto es mi primer contacto con el lenguaje C++.
+Además es también la primera vez que decido usar VSCode para aprender nuevo código e iniciar un proyecto.
+Este fichero son simplemente pruebas variadas de funciones para ir aprendiendo la sintaxis.*/
+
 #include <iostream>
 #include <string>
+using namespace std; // si declaramos el namespace no es necesario usarlo en los objetos que lo necesitan
 
-// Función que realiza un cálculo basado en dos entradas de usuario, sumando estos valores en un bucle anidado.
-int suma() {
-    int x, y;
-    std::cout << "Introduce el primer número: ";
-    std::cin >> x;
-    std::cout << "Introduce el segundo número: ";
-    std::cin >> y;
+/*El orden en C++ es importante. El compilador funciona de forma secuencial; Esto significa que cuando el compilador encuentra una referencia
+a una función o a una variable, necesita haber visto ya una declaración de esa función o variable, o bien su definición completa, para saber cómo manejarla.*/
+long suma(); // si no declaramos aquí el comppilador al entrar en el main no sabe
+int inputLenght();
 
-    int num = 0;
-    for (int i = 0; i < x; i++) {
-        for (int j = 0; j < y; j++) {
-            num += x + y; // Suma x + y en cada iteración del bucle interno.
-        }
-    }
-    return num;
-}
-
-// Función que obtiene una línea de texto, llama a suma y multiplica su resultado por la longitud del texto.
-int resta() {
-    std::string linea;
-    std::cout << "Introduce un texto: ";
-    std::getline(std::cin >> std::ws, linea); // Asegura que getline lee correctamente después de cin.
-    
-    int resultado = suma() * static_cast<int>(linea.length());
-    std::cout << "Esta función devuelve la función suma() multiplicada por el length del input del usuario" << std::endl;
-    std::cout << "Resultado: " << resultado << std::endl;
-    return resultado;
-}
-
-// Función principal que dirige el flujo del programa.
-int main() {
-    std::cout << "Prueba básica de output por terminal" << std::endl;
-    std::cout << "Resultado del bucle anidado: " << suma() << std::endl;
-    resta();
+int main()
+{
+    cout << "Prueba básica de output por terminal" << endl;
+    cout << "Resultado de la suma de tus inputs en bucle anidado: " << suma() << endl;
+    inputLenght();
     return 0;
+}
+
+long suma()
+{ // las funciones se definen poniendo el tipo y el nombre (strings se definen con la clausula standard)
+    long x, y;
+    cout << "Introduce el primer número: "; //"cout" C Out representa la salida por terminal
+    cin >> x;                               //"cin" C In representa el input del usuario
+    cout << "Introduce el segundo número: ";
+    cin >> y;
+    if (x > 9999 || y > 9999)
+    {
+        cout << "Número demasiado grande." << endl;
+        exit(0);
+    }
+    else
+    {
+        long num = 0;
+        for (int i = 0; i < x; i++)
+        {
+            for (int j = 0; j < y; j++)
+            {
+                num += x + y;
+            }
+        }
+        return num;
+    }
+}
+
+// obtiene una línea de texto, llama a suma y multiplica su resultado por la longitud del texto.
+int inputLenght()
+{
+    string linea;
+    cout << "Introduce un texto: ";
+    getline(cin >> ws, linea); //"ws" hace referencia a whitespace. Sería como meter un sc.nextLine() para consumir el espacio de salto de línea.
+
+    int resultado = static_cast<int>(linea.length());
+    cout << "La longitud del input del usuario es: " << resultado << " caracteres." << endl;
+    return resultado;
 }
